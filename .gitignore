@@ -6,7 +6,6 @@
 !.vscode/extensions.json
 
 *.yml
-*.cmake.in
 .github/
 
 # Visual Studio 
