@@ -43,7 +43,7 @@ target_include_directories(${PROJECT_NAME} PRIVATE "${GLFW_DIR}/include")
 set(GLM_TEST_ENABLE OFF CACHE BOOL "" FORCE)
 set(GLM_DIR "${LIB_DIR}/glm")
 add_subdirectory("${GLM_DIR}")
-target_include_directories(${PROJECT_NAME} PRIVATE "${GLM_DIR}/include")
+target_include_directories(${PROJECT_NAME} PRIVATE "${GLM_DIR}/glm")
 
 set_property(TARGET ${PROJECT_NAME} PROPERTY CXX_STANDARD 11)
 target_link_libraries(${PROJECT_NAME} glfw)

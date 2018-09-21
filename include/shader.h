@@ -3,7 +3,7 @@
 #include <fstream>
 #include <sstream>
 #include <iostream>
-#include <glm\glm.hpp>
+#include <glm.hpp>
 #include "opengl.h"
 
 class Shader {
@@ -16,12 +16,12 @@ private:
 public:
 	Shader()
 	{
-		m_programID = NULL;
+		m_programID = 0;
 	}
 
 	~Shader()
 	{
-		if (NULL != m_programID)
+		if (0 != m_programID)
 			glDeleteShader(m_programID);
 	}
 
