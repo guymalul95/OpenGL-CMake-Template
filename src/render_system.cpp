@@ -1,8 +1,11 @@
-#include "render_system.h"
+#include "render_system.hpp"
 
 void RenderSystem::shutdown()
 {
-	if (m_window) {
+	SAFE_DELETE(currentScene)
+
+	if (m_window)
+	{
 		glfwDestroyWindow(m_window);
 		m_window = NULL;
 	}
@@ -16,15 +19,19 @@ int RenderSystem::init()
 
 	m_window = glfwCreateWindow(m_viewport.width, m_viewport.height, "OpenGL Template", NULL, NULL);
 
-	if (m_window == NULL) return EXIT_FAILURE;
+	if (m_window == NULL)
+		return EXIT_FAILURE;
 
 	glfwMakeContextCurrent(m_window);
 
-	if (!gladLoadGLLoader((GLADloadproc)glfwGetProcAddress)) return EXIT_FAILURE;
+	if (!gladLoadGLLoader((GLADloadproc)glfwGetProcAddress))
+		return EXIT_FAILURE;
 
 	glViewport(0, 0, m_viewport.width, m_viewport.height);
 
 	glClearColor(0.2f, 0.3f, 0.3f, 1.0f);
+
+	DemoScene* currentScene2 = new DemoScene();
 
 	return EXIT_SUCCESS;
 }

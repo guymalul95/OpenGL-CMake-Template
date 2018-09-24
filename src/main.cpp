@@ -1,9 +1,10 @@
-#include "game.h"
+#include "game.hpp"
 
-int main(int argc, char* argv[]) {
+int main(int argc, char *argv[])
+{
 	Game game;
 
 	game.run();
 
-    return EXIT_SUCCESS;
+	return EXIT_SUCCESS;
 }

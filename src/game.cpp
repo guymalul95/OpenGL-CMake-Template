@@ -1,24 +1,25 @@
-#include "game.h"
+#include "game.hpp"
 
 int Game::init()
 {
-	if (!glfwInit()) {
+	if (!glfwInit())
+	{
 		return EXIT_FAILURE;
 	}
 
 	int err = m_render->init();
 
-	if (err) return EXIT_FAILURE;
+	if (err)
+		return EXIT_FAILURE;
 
 	return EXIT_SUCCESS;
 }
 
 void Game::mainloop()
 {
-	while (isGameRunning()) {
+	while (isGameRunning())
+	{
 		m_render->preFrame();
-
-
 
 		m_render->postFrame();
 		glfwPollEvents();

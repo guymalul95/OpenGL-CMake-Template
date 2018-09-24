@@ -1,4 +1,4 @@
-#include "shader.h"
+#include "shader.hpp"
 
 int Shader::initShader(const std::string vertexPath, const std::string fragmentPath, const std::string geometryPath)
 {
@@ -46,18 +46,19 @@ int Shader::initShader(const std::string vertexPath, const std::string fragmentP
 		return EXIT_FAILURE;
 	}
 
-	const char* vertexCode = strVertexCode.c_str();
-	const char* fragmentCode = strFragmentCode.c_str();
-	const char* geometryCode = nullptr;
+	const char *vertexCode = strVertexCode.c_str();
+	const char *fragmentCode = strFragmentCode.c_str();
+	const char *geometryCode = nullptr;
 
-	if (!strGeometryCode.empty()) {
+	if (!strGeometryCode.empty())
+	{
 		geometryCode = strGeometryCode.c_str();
 	}
 
 	return this->compile(vertexCode, fragmentCode, geometryCode);
 }
 
-int Shader::compile(const char* vertexSource, const char* fragmentSource, const char* geometrySource)
+int Shader::compile(const char *vertexSource, const char *fragmentSource, const char *geometrySource)
 {
 	GLuint sVertex, sFragment, sGeomentry;
 	int exitStatus = EXIT_SUCCESS;
@@ -115,8 +116,8 @@ int Shader::checkCompileErrors(GLuint object, std::string type)
 		{
 			glGetShaderInfoLog(object, 1024, NULL, infoLog);
 			std::cout << "| ERROR::SHADER: Compile-time error: Type: " << type << "\n"
-				<< infoLog << "\n -- ----------------------------------------------------- "
-				<< std::endl;
+					  << infoLog << "\n -- ----------------------------------------------------- "
+					  << std::endl;
 			return EXIT_FAILURE;
 		}
 	}
@@ -127,8 +128,8 @@ int Shader::checkCompileErrors(GLuint object, std::string type)
 		{
 			glGetProgramInfoLog(object, 1024, NULL, infoLog);
 			std::cout << "| ERROR::SHADER: Link-time error: Type: " << type << "\n"
-				<< infoLog << "\n -- ----------------------------------------------------- "
-				<< std::endl;
+					  << infoLog << "\n -- ----------------------------------------------------- "
+					  << std::endl;
 			return EXIT_FAILURE;
 		}
 	}

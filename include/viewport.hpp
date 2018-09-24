@@ -1,9 +1,11 @@
 #pragma once
-struct Viewport {
+struct Viewport
+{
 	int width;
 	int height;
 
-	Viewport(int w, int h) {
+	Viewport(int w, int h)
+	{
 		width = w;
 		height = h;
 	}

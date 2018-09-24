@@ -3,17 +3,20 @@
 #include <fstream>
 #include <sstream>
 #include <iostream>
-#include <glm.hpp>
+#include <glm/glm.hpp>
+#include <glm/gtc/type_ptr.hpp>
 #include "opengl.h"
 
-class Shader {
-private:
+class Shader
+{
+  private:
 	// Members
 	GLuint m_programID;
 
 	// Checks if compilation or linking failed and if so, print the error logs
 	int checkCompileErrors(GLuint object, std::string type);
-public:
+
+  public:
 	Shader()
 	{
 		m_programID = 0;
@@ -46,7 +49,7 @@ public:
 	}
 
 	// Utility functions
-	/*inline void setFloat(const GLchar *name, GLfloat value)
+	inline void setFloat(const GLchar *name, GLfloat value)
 	{
 		glUniform1f(glGetUniformLocation(this->ID(), name), value);
 	}
@@ -89,5 +92,5 @@ public:
 	inline void setMatrix4(const GLchar *name, const glm::mat4 &matrix)
 	{
 		glUniformMatrix4fv(glGetUniformLocation(this->ID(), name), 1, GL_FALSE, glm::value_ptr(matrix));
-	}*/
+	}
 };
