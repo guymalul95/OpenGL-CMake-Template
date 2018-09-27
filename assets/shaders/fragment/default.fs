@@ -1,8 +1,9 @@
 #version 330 core
-in vec4 i_vertexColor;
 out vec4 o_fragColor;
+in vec4 vertexColor;
+in vec2 texture;
 
 void main()
 {
-    o_fragColor = i_vertexColor;
+    o_fragColor = vertexColor;
 }

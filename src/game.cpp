@@ -21,7 +21,11 @@ void Game::mainloop()
 	{
 		m_render->preFrame();
 
+		m_render->update();
+		m_render->draw();
+
 		m_render->postFrame();
+		
 		glfwPollEvents();
 	}
 }
