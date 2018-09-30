@@ -1,8 +1,8 @@
-cmake_minimum_required(VERSION 3.1 FATAL_ERROR)
+cmake_minimum_required(VERSION 3.2.0 FATAL_ERROR)
 project(openglapp VERSION 0.1.0)
 
-include(CTest)
-enable_testing()
+#include(CTest)
+#enable_testing()
 
 # Variables
 if(CMAKE_SIZEOF_VOID_P EQUAL 8)
@@ -10,6 +10,15 @@ if(CMAKE_SIZEOF_VOID_P EQUAL 8)
 elseif(CMAKE_SIZEOF_VOID_P EQUAL 4)
     set(PLATFORM_ARCH "32")
 endif()
+
+# Assets
+file(GLOB_RECURSE RESOURCE_FILES "${CMAKE_CURRENT_SOURCE_DIR}/assets/**") 
+foreach(originalAssetFile ${RESOURCE_FILES})
+string(REPLACE ${CMAKE_CURRENT_SOURCE_DIR} ${CMAKE_CURRENT_BINARY_DIR} newAssetFile ${originalAssetFile})
+get_filename_component(newAssetDir ${newAssetFile} DIRECTORY)
+message("[ASSET] " ${originalAssetFile} " -> " ${newAssetDir})
+file(COPY ${originalAssetFile} DESTINATION ${newAssetDir})
+endforeach()
 
 # Global
 set(SRC_DIR "${CMAKE_CURRENT_SOURCE_DIR}/src")
@@ -19,7 +28,12 @@ set(LIB_DIR "${CMAKE_CURRENT_SOURCE_DIR}/lib")
 # Source
 file(GLOB SOURCES "${SRC_DIR}/*.cpp")
 
-add_executable(${PROJECT_NAME} ${SOURCES})
+add_executable(${PROJECT_NAME} ${SOURCES} ${RESOURCE_FILES})
+
+# Assets
+set_target_properties(${PROJECT_NAME} PROPERTIES
+  RESOURCE "${RESOURCE_FILES}"
+)
 
 # Includes
 target_include_directories(${PROJECT_NAME} PRIVATE ${INCLUDE_DIR})
@@ -45,15 +59,16 @@ set(GLM_DIR "${LIB_DIR}/glm")
 add_subdirectory("${GLM_DIR}")
 target_include_directories(${PROJECT_NAME} PRIVATE "${GLM_DIR}")
 
+# SBT
+set(STB_DIR "${LIB_DIR}/sbt")
+add_library("stb" "${STB_DIR}/src/stb.c")
+target_include_directories("stb" PRIVATE "${STB_DIR}/include")
+target_include_directories(${PROJECT_NAME} PRIVATE "${STB_DIR}/include")
+target_link_libraries(${PROJECT_NAME} "stb" "${CMAKE_DL_LIBS}")
+
 set_property(TARGET ${PROJECT_NAME} PROPERTY CXX_STANDARD 11)
 target_link_libraries(${PROJECT_NAME} glfw)
 target_link_libraries(${PROJECT_NAME} glm)
-
-# assets TODO: fix me
-file(REMOVE_RECURSE ${CMAKE_CURRENT_BINARY_DIR}/assets)
-add_custom_command(TARGET ${PROJECT_NAME} PRE_BUILD
-                   COMMAND ${CMAKE_COMMAND} -E copy_directory
-                       ${CMAKE_SOURCE_DIR}/assets ${CMAKE_CURRENT_BINARY_DIR}/assets)
 
 set(CPACK_PROJECT_NAME ${PROJECT_NAME})
 set(CPACK_PROJECT_VERSION ${PROJECT_VERSION})
