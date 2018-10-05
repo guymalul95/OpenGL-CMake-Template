@@ -1,6 +1,6 @@
 #include "shader.hpp"
 
-int Shader::initShader(const std::string vertexPath, const std::string fragmentPath, const std::string geometryPath)
+int Shader::init(const std::string vertexPath, const std::string fragmentPath, const std::string geometryPath)
 {
 	std::string strVertexCode;
 	std::string strFragmentCode;

@@ -6,6 +6,7 @@
 #include <glm/glm.hpp>
 #include <glm/gtc/type_ptr.hpp>
 #include "opengl.h"
+#include "macros.h"
 
 class Shader
 {
@@ -15,7 +16,7 @@ class Shader
 
 	// Checks if compilation or linking failed and if so, print the error logs
 	int checkCompileErrors(GLuint object, std::string type);
-
+	NONCOPYABLE(Shader);
   public:
 	Shader()
 	{
@@ -29,8 +30,7 @@ class Shader
 	}
 
 	// Inits with two file paths
-	// TODO: Remove this once a resource manager is done
-	int initShader(const std::string vertexPath, const std::string fragmentPath, const std::string geometryPath = std::string());
+	int init(const std::string vertexPath, const std::string fragmentPath, const std::string geometryPath = std::string());
 
 	// Compiles the shader from given source code
 	// Note: geometry source code is optional

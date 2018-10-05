@@ -1,13 +1,19 @@
 #pragma once
 #define GLFW_INCLUDE_NONE
 #include <stdlib.h>
+#include <memory>
 #include "render_system.hpp"
+#include "resource_manager.hpp"
 #include "macros.h"
+#include "scene.hpp"
+#include "scene_demo.hpp"
 
 class Game
 {
   private:
-	RenderSystem *m_render;
+	std::unique_ptr<RenderSystem> m_render;
+	std::unique_ptr<ResourceManager> m_resourceManager;
+	Scene *m_currentScene;
 
 	int init();
 	void mainloop();
@@ -15,14 +21,11 @@ class Game
 
 	inline bool isGameRunning() const { return m_render->getIsWindowAlive(); }
 
-	// Copy is not allowed
-	Game(const Game &) = delete;
-	Game &operator=(const Game &) = delete;
+	NONCOPYABLE(Game);
 
   public:
-	Game()
+	Game() : m_render(new RenderSystem()), m_resourceManager(new ResourceManager("assets/"))
 	{
-		m_render = new RenderSystem();
 	}
 
 	~Game() { shutdown(); }
