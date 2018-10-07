@@ -12,6 +12,12 @@ int Game::init()
 	if (err)
 		return EXIT_FAILURE;
 
+	// Hookup system events callbacks
+	GLFWwindow *window = m_render->getGLFWwindow();
+
+	glfwSetFramebufferSizeCallback(window, sysevents::framebuffer_size_callback);
+	glfwSetKeyCallback(window, sysevents::key_callback);
+
 	return EXIT_SUCCESS;
 }
 

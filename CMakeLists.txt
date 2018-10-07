@@ -12,7 +12,8 @@ elseif(CMAKE_SIZEOF_VOID_P EQUAL 4)
 endif()
 
 # Assets
-file(GLOB_RECURSE RESOURCE_FILES "${CMAKE_CURRENT_SOURCE_DIR}/assets/**") 
+set (RESOURCE_DIR "${CMAKE_CURRENT_SOURCE_DIR}/assets")
+file(GLOB_RECURSE RESOURCE_FILES "${RESOURCE_DIR}/**") 
 foreach(originalAssetFile ${RESOURCE_FILES})
 string(REPLACE ${CMAKE_CURRENT_SOURCE_DIR} ${CMAKE_CURRENT_BINARY_DIR} newAssetFile ${originalAssetFile})
 get_filename_component(newAssetDir ${newAssetFile} DIRECTORY)
@@ -26,7 +27,7 @@ set(INCLUDE_DIR "${CMAKE_CURRENT_SOURCE_DIR}/include")
 set(LIB_DIR "${CMAKE_CURRENT_SOURCE_DIR}/lib")
 
 # Source
-file(GLOB SOURCES "${SRC_DIR}/*.cpp")
+file(GLOB_RECURSE SOURCES "${SRC_DIR}/**")
 
 add_executable(${PROJECT_NAME} ${SOURCES} ${RESOURCE_FILES})
 

@@ -32,6 +32,7 @@ int RenderSystem::init()
 		return EXIT_FAILURE;
 
 	glGetError();
+	glEnable(GL_DEPTH_TEST);
 	glViewport(0, 0, m_viewport.width, m_viewport.height);
 	
 	m_currentScene = new DemoScene();
@@ -52,8 +53,8 @@ void RenderSystem::update()
 
 void RenderSystem::preFrame()
 {
-	glClearColor(0.2f, 0.3f, 0.3f, 1.0f);
-	glClear(GL_COLOR_BUFFER_BIT);
+	glClearColor(0.6f, 0.8f, 0.9f, 1.0f);
+	glClear(CLEAR_FLAGS);
 }
 
 void RenderSystem::postFrame()

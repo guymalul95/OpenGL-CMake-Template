@@ -3,6 +3,7 @@
 #include <stdlib.h>
 #include "render_system.hpp"
 #include "macros.h"
+#include "system_events.h"
 
 class Game
 {
