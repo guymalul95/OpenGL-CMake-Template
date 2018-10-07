@@ -67,7 +67,7 @@ target_include_directories("stb" PRIVATE "${STB_DIR}/include")
 target_include_directories(${PROJECT_NAME} PRIVATE "${STB_DIR}/include")
 target_link_libraries(${PROJECT_NAME} "stb" "${CMAKE_DL_LIBS}")
 
-set_property(TARGET ${PROJECT_NAME} PROPERTY CXX_STANDARD 11)
+set_property(TARGET ${PROJECT_NAME} PROPERTY CXX_STANDARD 14)
 target_link_libraries(${PROJECT_NAME} glfw)
 target_link_libraries(${PROJECT_NAME} glm)
 

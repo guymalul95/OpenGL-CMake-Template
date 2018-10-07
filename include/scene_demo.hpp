@@ -3,29 +3,30 @@
 #include "opengl.h"
 #include "shader.hpp"
 #include "scene.hpp"
-#include "stb_image.h"
+#include "texture2d.hpp"
 
 class DemoScene : public Scene
 {
 private:
-	std::unique_ptr<Shader> m_shader;
+	Shader* m_shader;
+	Texture2D* m_textureSuccItJinYang;
 	GLuint VBO;
 	GLuint VAO;
 	GLuint EBO;
-	unsigned int sample_texture;
 
 public:
-	DemoScene() : m_shader(new Shader())
+	DemoScene(const ResourceManager& resourceManager) : Scene(resourceManager),
+	m_shader(nullptr)
 	{
 	}
 
 	virtual ~DemoScene()
 	{
-		m_shader.release();
+		SAFE_DELETE(m_shader);
+		SAFE_DELETE(m_textureSuccItJinYang);
 		glDeleteVertexArrays(1, &VAO);
 		glDeleteBuffers(1, &VBO);
 		glDeleteBuffers(1, &EBO);
-		glDeleteTextures(1, &sample_texture);
 	}
 
 	void init() override;

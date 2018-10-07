@@ -2,8 +2,6 @@
 
 void RenderSystem::shutdown()
 {
-	SAFE_DELETE(m_currentScene)
-
 	if (m_window)
 	{
 		glfwDestroyWindow(m_window);
@@ -34,21 +32,12 @@ int RenderSystem::init()
 	glGetError();
 	glEnable(GL_DEPTH_TEST);
 	glViewport(0, 0, m_viewport.width, m_viewport.height);
-	
-	m_currentScene = new DemoScene();
-	m_currentScene->init();
 
 	return EXIT_SUCCESS;
 }
 
-void RenderSystem::draw()
-{
-	m_currentScene->draw();
-}
-
 void RenderSystem::update()
 {
-	m_currentScene->update();
 }
 
 void RenderSystem::preFrame()
