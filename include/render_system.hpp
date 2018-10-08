@@ -7,6 +7,7 @@
 class RenderSystem
 {
 private:
+	static const int CLEAR_FLAGS = GL_COLOR_BUFFER_BIT;
 	GLFWwindow *m_window;
 	Viewport m_viewport;
 

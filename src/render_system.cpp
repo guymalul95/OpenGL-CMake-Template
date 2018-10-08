@@ -30,7 +30,6 @@ int RenderSystem::init()
 		return EXIT_FAILURE;
 
 	glGetError();
-	glEnable(GL_DEPTH_TEST);
 	glViewport(0, 0, m_viewport.width, m_viewport.height);
 
 	return EXIT_SUCCESS;
@@ -42,7 +41,7 @@ void RenderSystem::update()
 
 void RenderSystem::preFrame()
 {
-	glClearColor(0.6f, 0.8f, 0.9f, 1.0f);
+	glClearColor(0.2f, 0.2f, 0.2f, 1.0f);
 	glClear(CLEAR_FLAGS);
 }
 
