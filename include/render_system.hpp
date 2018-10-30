@@ -1,8 +1,10 @@
 #pragma once
 #include <stdlib.h>
+#include <glad\glad.h>
 #include "opengl.h"
 #include "viewport.hpp"
 #include "macros.h"
+#include "system_events.h"
 
 class RenderSystem
 {

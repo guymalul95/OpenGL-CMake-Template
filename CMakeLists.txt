@@ -13,6 +13,7 @@ endif()
 
 # Assets
 set (RESOURCE_DIR "${CMAKE_CURRENT_SOURCE_DIR}/assets")
+message("Resource Dir:" ${RESOURCE_DIR})
 file(GLOB_RECURSE RESOURCE_FILES "${RESOURCE_DIR}/**") 
 foreach(originalAssetFile ${RESOURCE_FILES})
 string(REPLACE ${CMAKE_CURRENT_SOURCE_DIR} ${CMAKE_CURRENT_BINARY_DIR} newAssetFile ${originalAssetFile})

@@ -43,7 +43,7 @@ void DemoScene::init()
 	glBindBuffer(GL_ARRAY_BUFFER, 0);
 	glBindVertexArray(0);
 
-    m_shader = getResourceManager().loadShader("shaders/vertex/default.glsl","shaders/fragment/default.glsl");
+    m_shader = getResourceManager().loadShader("shaders/vertex/default.vert","shaders/fragment/default.frag");
 
 	m_textureSuccItJinYang = getResourceManager().loadTexture2D("textures/suckit.jpg");
 }
